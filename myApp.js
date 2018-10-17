@@ -1,14 +1,18 @@
 module.exports = {
 
-    parseDate: function(date, done) {
-      let parsedDate = new Date(date);
-      if (parsedDate.toUTCString() === "Invalid Date" ) {
-        return false;
+  parseDate: function(date, done) {
+    let parsedDate = new Date(date);
+    if (parsedDate.toUTCString() === "Invalid Date" ) {
+      let dateAsInteger = new Date(Number(date));
+      if (dateAsInteger.toUTCString() != "Invalid Date") {
+        return dateAsInteger;
       }
-      else {
-       return parsedDate; 
-      }
-      done();
+      return false;
     }
-    
+    else {
+     return parsedDate; 
     }
+    done();
+  }
+  
+  }
