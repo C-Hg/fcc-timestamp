@@ -13,6 +13,12 @@ module.exports = {
      return parsedDate; 
     }
     done();
-  }
+  },
   
+  dateToLocalTime: function(date, done) {
+    let offset = (date.getTimezoneOffset() / -60);
+    return new Date(date.getTime() + offset);
+    
+  }
+    
   }

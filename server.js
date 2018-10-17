@@ -26,6 +26,7 @@ app.get("/api/hello", function (req, res) {
 
 var myApp = require("./myApp.js");
 var parseDate = myApp.parseDate;
+var dateToLocalTime = myApp.dateToLocalTime;
 // API timestamp endpoints
 app.get("/api/timestamp/:date_string", function (req, res) {
   let parsedDate = parseDate(req.params.date_string);
@@ -33,6 +34,7 @@ app.get("/api/timestamp/:date_string", function (req, res) {
     res.json({"unix": null, "utc": "Invalid Date"});
   }
   else {
+    parsedDate = dateToLocalTime(parsedDate);
     res.json({"unix": parsedDate.getTime(), "utc": parsedDate.toUTCString()});
   }
 });
