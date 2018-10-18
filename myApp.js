@@ -1,6 +1,6 @@
 module.exports = {
 
-  parseDate: function(date, done) {
+  parseDate: function(date) {
     let parsedDate = new Date(date);
     if (parsedDate.toUTCString() === "Invalid Date" ) {
       let dateAsInteger = new Date(Number(date));
@@ -12,13 +12,11 @@ module.exports = {
     else {
      return parsedDate; 
     }
-    done();
   },
   
-  dateToLocalTime: function(date, done) {
-    let offset = (date.getTimezoneOffset() / -60);
+  dateToLocalTime: function(date) {
+    let offset = (date.getTimezoneOffset() * -60000);
     return new Date(date.getTime() + offset);
-    
   }
     
   }
